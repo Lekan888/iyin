@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Iyin ❤️</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: radial-gradient(circle at top, #ff9a9e, #fad0c4);
+  overflow: hidden;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.container {
+  z-index: 2;
+  padding: 20px;
+  max-width: 90%;
+}
+
+img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+#text {
+  font-size: 1.2em;
+  line-height: 1.7;
+  min-height: 160px;
+}
+
+.buttons {
+  margin-top: 25px;
+  position: relative;
+}
+
+button {
+  padding: 14px 30px;
+  border: none;
+  border-radius: 40px;
+  font-size: 1.1em;
+  margin: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.yes {
+  background: #ff3366;
+  color: white;
+}
+
+.no {
+  background: rgba(255,255,255,0.25);
+  color: white;
+  position: absolute;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Final screen */
+#final {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to bottom right, #ff758c, #ff7eb3);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+}
+
+#final h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+#final p {
+  font-size: 1.3em;
+  line-height: 1.6;
+}
+video {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  margin-bottom: 20px;
+}
+</style>
+</head>
+
+<body>
+  <audio id="bgMusic" loop>
+  <source src="./drake.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  document.body.addEventListener('click', function() {
+    document.getElementById('bgMusic').play().catch(err => {
+      // If something goes wrong (e.g., audio blocked), nothing happens
+    });
+  }, { once: true });
+</script>
+
+<div class="container" id="main">
+  <video autoplay loop muted playsinline>
+  <source src="./iyin.mp4" type="video/mp4">
+</video>
+
+  <h1>Hi Iyin ❤️</h1>
+
+  <div id="text"></div>
+
+  <div class="buttons">
+    <button class="yes" onclick="sayYes()">Yes 💖</button>
+    <button class="no" id="noBtn">No 💭</button>
+  </div>
+</div>
+
+<div id="final">
+  <div>
+    <h2>It’s You ❤️</h2>
+    <p>
+      Thank you for choosing me.<br><br>
+      I promise effort, honesty, laughter,
+      patience, and real care.<br><br>
+      I’m excited to grow with you,
+      learn you, and love you properly 💕
+    </p>
+  </div>
+</div>
+
+<script>
+// Romantic typewriter text
+const message = [
+  "I’m putting my programming skills to good use…",
+  "not to impress you with code…",
+  "but to tell you something genuine.",
+  "",
+  "I’ve come to really enjoy you.",
+  "Your energy, your presence, the way you make moments feel warm.",
+  "",
+  "This isn’t rushed.",
+  "It’s intentional.",
+  "And it’s coming from a sincere place.",
+  "",
+  "So Iyin…",
+  "would you like to be my girlfriend? 💕"
+];
+
+let index = 0;
+const textBox = document.getElementById("text");
+
+function typeText() {
+  if (index < message.length) {
+    textBox.innerHTML += message[index] + "<br>";
+    index++;
+    setTimeout(typeText, 900);
+  }
+}
+typeText();
+
+// YES action
+function sayYes() {
+  document.getElementById("main").style.display = "none";
+  document.getElementById("final").style.display = "flex";
+}
+
+// NO button dodge
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseenter", () => {
+  const x = Math.random() * 200 - 100;
+  const y = Math.random() * 100 - 50;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+// Floating hearts
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 500);
+</script>
+
+</body>
+</html>
